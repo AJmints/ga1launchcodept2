@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -40,6 +38,7 @@ public class TechJobs {
 
                 if (columnChoice.equals("all")) {
                     printJobs(JobData.findAll());
+
                 } else {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
@@ -120,6 +119,31 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        if (!someJobs.isEmpty()) {
+
+            for (HashMap<String, String> i : someJobs) {
+                System.out.println("\n*****");
+                for (Map.Entry m : i.entrySet()) {
+                    System.out.println(m.getKey() + ": " + m.getValue());
+                }
+                System.out.println("*****");
+            }
+        } else {
+            System.out.println("No Results");
+        }
+
     }
 }
+
+// if (searchField.equals("all")) {
+//         printJobs(JobData.findByValue(searchTerm));
+//         } else {
+//         printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+//         }
+
+//    HashMap<String, String> columnChoices = new HashMap<>();
+//        columnChoices.put("core competency", "Skill");
+//                columnChoices.put("employer", "Employer");
+//                columnChoices.put("location", "Location");
+//                columnChoices.put("position type", "Position Type");
+//                columnChoices.put("all", "All");

@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -43,7 +40,8 @@ public class JobData {
         }
 
         // Bonus mission: sort the results
-        Collections.sort(values);
+        Collections.sort(values, String.CASE_INSENSITIVE_ORDER);
+
 
         return values;
     }
@@ -72,7 +70,7 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
-
+        System.out.println("findByColumnAndValue method");
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
@@ -97,9 +95,20 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+        System.out.println("this method works findByValue()");
 
-        // TODO - implement this method
-        return null;
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            for (String values : row.values()) {
+                if (values.toLowerCase().contains(value.toLowerCase())) {
+                    jobs.add(row);
+                    break;
+                }
+            }
+        }
+
+        return jobs;
     }
 
     /**
